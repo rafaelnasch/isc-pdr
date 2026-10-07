@@ -29,7 +29,7 @@
     const response=await fetch('./report.enc',{credentials:'omit',cache:'no-cache',referrerPolicy:'no-referrer'});
     if(!response.ok)throw new Error('Arquivo indisponível');
     const key=await crypto.subtle.importKey('raw',decode(keyText),'AES-GCM',false,['decrypt']);
-    const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:decode('gsD0tH0gUfzu5bkA'),tagLength:128},key,await response.arrayBuffer());
+    const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:decode('AU6yh895fRzMqm6f'),tagLength:128},key,await response.arrayBuffer());
     const frame=document.getElementById('report');
     const blobUrl=URL.createObjectURL(new Blob([plain],{type:'text/html;charset=utf-8'}));
     frame.addEventListener('load',()=>{state.hidden=true;frame.hidden=false;URL.revokeObjectURL(blobUrl);},{once:true});
